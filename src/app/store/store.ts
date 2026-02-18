@@ -1,8 +1,18 @@
 import { configureStore } from '@reduxjs/toolkit';
+import tvmazeApi from '../../data/api/tvmazeApiSlice';
+import watchlistReducer from '../../features/watchlist/watchlistSlice';
+import playbackReducer from '../../features/player/playbackSlice';
+import recentReducer from '../../features/recent/recentSlice';
 
-// Placeholder reducers — will add real slices later
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    [tvmazeApi.reducerPath]: tvmazeApi.reducer,
+    watchlist: watchlistReducer,
+    playback: playbackReducer,
+    recent: recentReducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(tvmazeApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
