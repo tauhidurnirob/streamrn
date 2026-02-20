@@ -30,6 +30,7 @@ const HomeHeader: React.FC<HomeHeaderProps> = ({ onPressShow }) => {
       <Text style={styles.sectionTitle}>Popular Picks</Text>
       <FlatList
         horizontal
+        showsHorizontalScrollIndicator={false}
         data={CURATED_SHOW_IDS}
         keyExtractor={(item) => item.toString()}
         renderItem={({ item }) => <CuratedCard id={item} onPress={onPressShow} />}
